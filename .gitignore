@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.edge-preview/
+media-source/
+tmp/
+output/
+preview-*.png
+*.log
