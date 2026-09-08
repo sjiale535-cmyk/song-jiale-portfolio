@@ -322,7 +322,6 @@ function App() {
         <div className="shell">
           <header className="section-head" data-reveal>
             <span>01 / ABOUT</span>
-            <p>视觉设计师 / AI 设计师 / 品牌设计师，以生成式技术拓展内容创作边界。</p>
           </header>
           <div className="about-native-grid">
             <figure className="about-portrait" data-reveal>
