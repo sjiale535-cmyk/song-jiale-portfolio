@@ -6,6 +6,7 @@ import comicDaxia from '../assets/comic-daxia-web.jpg'
 import TrueFocus from './components/TrueFocus/TrueFocus'
 
 const ShapeBlur = lazy(() => import('./components/ShapeBlur/ShapeBlur'))
+const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
 const Arrow = ({ diagonal = false }) => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -30,7 +31,7 @@ const gameNames = [
 ]
 
 const gameVideos = Array.from({ length: 6 }, (_, index) => ({
-  src: `/videos/game/${index + 1}.mp4`,
+  src: publicAsset(`videos/game/${index + 1}.mp4`),
   no: String(index + 1).padStart(2, '0'),
   title: `Creative ${String(index + 1).padStart(2, '0')}`,
   gameName: gameNames[index],
@@ -46,7 +47,7 @@ const comicProjects = [
     subtitle: '开局收女帝为徒',
     badge: '腾讯精品漫剧',
     image: comicLianqi,
-    video: '/videos/comic/daxia-zhenyaolu.mp4',
+    video: publicAsset('videos/comic/daxia-zhenyaolu.mp4'),
     detail: '参与角色与场景视觉资产生成、镜头调整及成片剪辑。',
     meta: [
       { label: 'ROLE', value: '视觉资产 / 镜头生成 / 剪辑' },
@@ -59,7 +60,7 @@ const comicProjects = [
     subtitle: '黑猪传',
     badge: '腾讯精品漫剧',
     image: comicDaxia,
-    video: '/videos/comic/lianqi-3000.mp4',
+    video: publicAsset('videos/comic/lianqi-3000.mp4'),
     detail: '参与角色与场景视觉资产生成、镜头调整及成片剪辑。',
     meta: [
       { label: 'ROLE', value: '视觉资产 / 镜头生成 / 剪辑' },
@@ -248,7 +249,7 @@ function App() {
             onCanPlay={() => setVideoReady(true)}
             className={videoReady ? 'is-ready' : ''}
           >
-            <source src="/hero-video.mp4" type="video/mp4" />
+            <source src={publicAsset('hero-video.mp4')} type="video/mp4" />
           </video>
           <div className="hero-grid" />
           <div className="hero-shade" />
@@ -448,7 +449,7 @@ function App() {
         </div>
         <div className="award-video" data-reveal>
           <video
-            src="/videos/award/heritage-award.mp4"
+            src={publicAsset('videos/award/heritage-award.mp4')}
             controls
             playsInline
             preload="metadata"
