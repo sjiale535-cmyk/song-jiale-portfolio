@@ -28,9 +28,9 @@ const gameNames = [
   'Pretty Boutique: Merge & Love',
   'Pretty Boutique: Merge & Love',
   'Pretty Boutique: Merge & Love',
-  'New Game Creative 01',
-  'New Game Creative 02',
-  'New Game Creative 03',
+  '',
+  '',
+  '',
 ]
 
 const gameVideos = Array.from({ length: gameNames.length }, (_, index) => ({
@@ -100,12 +100,35 @@ function OrbitVideo({ item, active }) {
 
 function GameOrbit({ items, onPreview }) {
   const [rotation, setRotation] = useState(0)
-  const drag = useRef({ active: false, moved: false, startX: 0, startRotation: 0 })
+  const drag = useRef({ active: false, moved: false, startX: 0, startRotation: 0, itemIndex: null })
   const angleStep = 360 / items.length
   const frontIndex = ((Math.round(-rotation / angleStep) % items.length) + items.length) % items.length
 
+  const openPreview = (item) => {
+    onPreview({
+      ...item,
+      badge: '游戏买量广告',
+      title: item.gameName || '游戏买量广告',
+      subtitle: item.title,
+      video: item.src,
+      detail: '海外 Merge 游戏投放素材 · 创意构思 / AI 生成 / 剪辑包装',
+      meta: [
+        { label: 'ROLE', value: item.role },
+        { label: 'TOOLS', value: item.tools },
+        { label: 'FORMAT', value: item.format },
+      ],
+    })
+  }
+
   const startDrag = (event) => {
-    drag.current = { active: true, moved: false, startX: event.clientX, startRotation: rotation }
+    const card = event.target.closest('.orbit-card.is-front')
+    drag.current = {
+      active: true,
+      moved: false,
+      startX: event.clientX,
+      startRotation: rotation,
+      itemIndex: card ? Number(card.dataset.index) : null,
+    }
     event.currentTarget.setPointerCapture(event.pointerId)
   }
 
@@ -116,8 +139,10 @@ function GameOrbit({ items, onPreview }) {
   }
 
   const endDrag = (event) => {
+    const { moved, itemIndex } = drag.current
     drag.current.active = false
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
+    if (!moved && itemIndex === frontIndex) openPreview(items[itemIndex])
   }
 
   return (
@@ -144,23 +169,7 @@ function GameOrbit({ items, onPreview }) {
             <article
               className={`orbit-card ${isFront ? 'is-front' : ''}`}
               key={item.src}
-              onClick={() => {
-                if (isFront && !drag.current.moved) {
-                  onPreview({
-                    ...item,
-                    badge: '游戏买量广告',
-                    title: item.gameName,
-                    subtitle: item.title,
-                    video: item.src,
-                    detail: '海外 Merge 游戏投放素材 · 创意构思 / AI 生成 / 剪辑包装',
-                    meta: [
-                      { label: 'ROLE', value: item.role },
-                      { label: 'TOOLS', value: item.tools },
-                      { label: 'FORMAT', value: item.format },
-                    ],
-                  })
-                }
-              }}
+              data-index={index}
               style={{
                 '--orbit-x': `${x}px`,
                 '--orbit-y': `${y}px`,
@@ -175,7 +184,7 @@ function GameOrbit({ items, onPreview }) {
               <span className="orbit-index">{item.no}</span>
               <div className="orbit-label">
                 <span>GAME AD · {item.title}</span>
-                <strong>{item.gameName}</strong>
+                {item.gameName && <strong>{item.gameName}</strong>}
                 {isFront && <em>CLICK TO PREVIEW ↗</em>}
               </div>
             </article>
