@@ -28,9 +28,12 @@ const gameNames = [
   'Pretty Boutique: Merge & Love',
   'Pretty Boutique: Merge & Love',
   'Pretty Boutique: Merge & Love',
+  'New Game Creative 01',
+  'New Game Creative 02',
+  'New Game Creative 03',
 ]
 
-const gameVideos = Array.from({ length: 6 }, (_, index) => ({
+const gameVideos = Array.from({ length: gameNames.length }, (_, index) => ({
   src: publicAsset(`videos/game/${index + 1}.mp4`),
   no: String(index + 1).padStart(2, '0'),
   title: `Creative ${String(index + 1).padStart(2, '0')}`,
