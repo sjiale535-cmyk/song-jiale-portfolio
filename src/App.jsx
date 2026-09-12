@@ -3,6 +3,7 @@ import portrait from '../assets/portrait-color-web.jpg'
 import brandImage from '../assets/project-brand.png'
 import comicLianqi from '../assets/comic-lianqi-web.jpg'
 import comicDaxia from '../assets/comic-daxia-web.jpg'
+import awardPoster from '../assets/award-xingshi-poster.jpg'
 import TrueFocus from './components/TrueFocus/TrueFocus'
 
 const ShapeBlur = lazy(() => import('./components/ShapeBlur/ShapeBlur'))
@@ -73,16 +74,28 @@ const comicProjects = [
   {
     no: '03',
     title: 'Marry My Daddy',
-    subtitle: '海外短剧 · Overseas Short Drama',
-    badge: '海外短剧',
+    subtitle: 'Vibe Reels 上架 · 海外短剧',
+    badge: 'VIBE REELS',
     video: publicAsset('videos/comic/marry-my-daddy.mp4'),
-    detail: '面向海外观众的竖屏短剧内容，围绕强情节钩子与高密度叙事节奏完成影像呈现。',
+    detail: '面向海外观众的竖屏短剧内容，围绕强情节钩子与高密度叙事节奏完成影像呈现，现已于 Vibe Reels 上架。',
     meta: [
       { label: 'TYPE', value: '海外竖屏短剧' },
-      { label: 'TITLE', value: 'Marry My Daddy' },
+      { label: 'PLATFORM', value: 'Vibe Reels' },
     ],
   },
 ]
+
+const awardProject = {
+  title: '醒狮入梦',
+  subtitle: '中国好创意 · 人工智能生成视频类',
+  badge: '全国总决赛一等奖',
+  video: publicAsset('videos/award/heritage-award.mp4'),
+  detail: '以国家级非遗醒狮为创作核心，从剧本、视觉资产、分镜、生视频到剪辑包装，全部由我一人独立完成。',
+  meta: [
+    { label: 'ROLE', value: '独立创作 · 全流程完成' },
+    { label: 'AWARD', value: '中国好创意全国总决赛一等奖' },
+  ],
+}
 
 function OrbitVideo({ item, active }) {
   const videoRef = useRef(null)
@@ -451,11 +464,11 @@ function App() {
       <section className="award-work section shell" id="work">
         <header className="section-head" data-reveal>
           <span>04 / AWARD WORK</span>
-          <p>以非遗文化传播与 AIGC 影像创作为核心的获奖作品。</p>
+          <p>中国好创意人工智能生成视频类全国总决赛一等奖作品。</p>
         </header>
         <div className="award-heading" data-reveal>
           <div>
-            <span>NATIONAL FIRST PRIZE · 2026</span>
+            <span>CHINA CREATIVE CHALLENGES · NATIONAL FIRST PRIZE</span>
             <h2>醒狮<br /><i>入梦</i></h2>
           </div>
           <div className="award-copy">
@@ -471,17 +484,21 @@ function App() {
         <div className="award-case-meta" data-reveal>
           <div><span>ROLE / 个人职责</span><strong>独立创作 · 全流程完成</strong></div>
           <div><span>FORMAT / 项目形式</span><strong>AIGC 非遗视觉短片</strong></div>
-          <div><span>RESULT / 项目成果</span><strong>全国总决赛一等奖</strong></div>
+          <div><span>RESULT / 项目成果</span><strong>中国好创意人工智能生成视频类全国总决赛一等奖</strong></div>
         </div>
-        <div className="award-video" data-reveal>
-          <video
-            src={publicAsset('videos/award/heritage-award.mp4')}
-            controls
-            playsInline
-            preload="metadata"
-            onLoadedMetadata={(event) => { if (event.currentTarget.duration > 0.12) event.currentTarget.currentTime = 0.12 }}
-          />
-          <span className="award-mark">01 / AWARD FILM</span>
+        <div className="award-showcase" data-reveal>
+          <figure className="award-poster">
+            <img src={awardPoster} alt="《醒狮入梦》作品海报" />
+            <span className="award-mark">01 / AWARD FILM</span>
+          </figure>
+          <div className="award-view-panel">
+            <span>AWARD-WINNING AIGC FILM · 2026</span>
+            <h3>中国好创意<br />人工智能生成视频类<br /><i>全国总决赛一等奖</i></h3>
+            <p>点击观看《醒狮入梦》完整获奖影片，了解传统醒狮文化与生成式影像结合的完整视觉叙事。</p>
+            <button type="button" onClick={() => setActivePreview(awardProject)}>
+              点击观看完整影片 <i><Arrow diagonal /></i>
+            </button>
+          </div>
         </div>
       </section>
 
