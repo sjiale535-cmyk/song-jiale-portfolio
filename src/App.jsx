@@ -70,6 +70,18 @@ const comicProjects = [
       { label: 'STATUS', value: '商业化上线' },
     ],
   },
+  {
+    no: '03',
+    title: 'Marry My Daddy',
+    subtitle: '海外短剧 · Overseas Short Drama',
+    badge: '海外短剧',
+    video: publicAsset('videos/comic/marry-my-daddy.mp4'),
+    detail: '面向海外观众的竖屏短剧内容，围绕强情节钩子与高密度叙事节奏完成影像呈现。',
+    meta: [
+      { label: 'TYPE', value: '海外竖屏短剧' },
+      { label: 'TITLE', value: 'Marry My Daddy' },
+    ],
+  },
 ]
 
 function OrbitVideo({ item, active }) {
@@ -412,7 +424,11 @@ function App() {
             {comicProjects.map((project) => (
               <article className="comic-project-card" key={project.no} data-reveal>
                 <div className="comic-poster">
-                  <img src={project.image} alt={`${project.title}：${project.subtitle}海报`} />
+                  {project.image ? (
+                    <img src={project.image} alt={`${project.title}：${project.subtitle}海报`} />
+                  ) : (
+                    <video src={project.video} muted loop autoPlay playsInline preload="metadata" aria-label={`${project.title}视频画面`} />
+                  )}
                   <span className="comic-no">{project.no}</span>
                   <span className="comic-badge">{project.badge}</span>
                 </div>
