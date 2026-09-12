@@ -313,7 +313,6 @@ function App() {
                 pauseBetweenAnimations={1}
               />
             </h1>
-            <p className="hero-intro">视觉设计师 / AI 设计师 / 品牌设计师。<br />用设计建立秩序，用 AI 拓展想象，让创意真正抵达用户。</p>
             <div className="hero-actions">
               <button className="hero-cta" onClick={() => go('#videos')}>VIEW SELECTED WORK <Arrow /></button>
               <a className="hero-resume" href={`${import.meta.env.BASE_URL}files/song-jiale-resume.pdf`} download="宋家乐-视觉AI设计师-简历.pdf">DOWNLOAD CV ↓</a>
@@ -341,7 +340,7 @@ function App() {
               <figcaption><span>SONG JIALE</span><span>2004 — NOW</span></figcaption>
             </figure>
             <div className="about-content" data-reveal>
-              <h2>视觉 × AI<br /><i>完整内容生产力</i></h2>
+              <h2>视觉 × AI<br /><i>从创意到成片</i></h2>
               <p className="about-lead">数字媒体艺术背景，具备从脚本构思、分镜设计、AI 视觉资产生成，到剪辑包装的完整内容生产能力。关注创意表达，也关心平台节奏与商业结果。</p>
               <div className="about-contact">
                 <a href="tel:17739450561"><span>PHONE</span><strong>177 3945 0561</strong></a>
